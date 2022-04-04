@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/pkrlfamous/sharelink-backend#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "express": "^4.17.3",
     "lodash": "^4.17.21",
     "mongoose": "^6.2.8",

@@ -6,7 +6,7 @@ const verificationTokenSchema = new mongoose.Schema({
         require:true,
     },
     email:{
-        type:email,
+        type:String,
         required:true
     },
     expiresIn:{
