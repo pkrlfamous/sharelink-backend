@@ -6,15 +6,15 @@ const linkSchema = new mongoose.Schema({
         required: true,
         trim: true,
     },
-    linkUrl:{
+    url:{
         type:String,
         required:true,
     },
-    parentLinkName:{
+    parentLink:{
         type:mongoose.Schema.Types.ObjectId,
         ref: "",
     },
-    childLinkName:{
+    childLink:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "",
     },
@@ -22,6 +22,14 @@ const linkSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"User"
     },
+    description:{
+        type: String,
 
-
+    },
+    tag:{
+        type:Array
+    }
 }, {timestamps: true});
+
+const Link = mongoose.model("Link", linkSchema);
+module.exports = Link;
