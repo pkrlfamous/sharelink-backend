@@ -12,11 +12,13 @@ const linkSchema = new mongoose.Schema({
     },
     parentLink:{
         type:mongoose.Schema.Types.ObjectId,
-        ref: "",
+        ref: "Link",
+        default: null
     },
     childLink:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "",
+        ref: "Link",
+        default: null
     },
     createdBy:{
         type:mongoose.Schema.Types.ObjectId,
@@ -31,5 +33,9 @@ const linkSchema = new mongoose.Schema({
     }
 }, {timestamps: true});
 
+
+const linkList = new mongoose.Schema({
+    
+})
 const Link = mongoose.model("Link", linkSchema);
 module.exports = Link;
