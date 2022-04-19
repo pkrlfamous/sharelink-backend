@@ -2,7 +2,7 @@ const express = require('express');
 const res = require('express/lib/response');
 const app = express();
 
-const CustomError = require('./src/helpers/errorHelper');
+const AppError = require('./src/utils/appError');
 const globalErrorHandler = require('./src/controllers/errorController');
 app.use(express.json());
 
@@ -12,9 +12,8 @@ app.use('/api/v1', require('./src/routes'));
 
 
 app.all('*', (req, res, next)=>{
-    next(new CustomError(`Can't find ${req.originalUrl} on this server`, 404));
+    next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
 });
-
 
 app.use(globalErrorHandler);
 

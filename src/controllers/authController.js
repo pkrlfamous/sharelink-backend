@@ -1,5 +1,5 @@
 const {User, VerificationToken} = require('../models');
-const catchAsync = require('../helpers/catchAsync');
+const catchAsync = require('../utils/catchAsync');
 const _ = require('lodash');
 const bcrypt = require('bcrypt');
 
@@ -14,7 +14,7 @@ module.exports = {
         return res.send(user);
     },),
 
-    loginUser: async(req, res, next)=>{
+    loginUser: catchAsync(async(req, res, next)=>{
         let user = await User.findOne({email: req.body.email});
         if(!user) return res.status(400).send('Invalid email.');
 
@@ -22,5 +22,5 @@ module.exports = {
         if(!validPassword) return res.status(400).send('Invalid password');
         console.log('successfully logged in')
         return res.status(200).send()
-    }
+    }),
 }
