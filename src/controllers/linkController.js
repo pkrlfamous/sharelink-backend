@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 
 module.exports = {
   getALink: catchAsync(async (req, res, next) => {
-    if (!mongoose.Types.ObjectId.isValid(req.params.id)) return res.status(404).send("invalid url");
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) return res.status(404).send("invalid id");
     const link = await Link.findById(req.params.id);
     if (!link) {
       return next(new AppError("Link with the given id not found", 404));
