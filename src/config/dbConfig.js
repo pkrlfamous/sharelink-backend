@@ -6,5 +6,5 @@ module.exports = function(){
         useUnifiedTopology: true,
     })
     .then( () => console.log('connected to the database'))
-    .catch(err => console.error('could not connect ot db..',err));
+    .catch(err => console.error('could not connect to db..',err));
 }
