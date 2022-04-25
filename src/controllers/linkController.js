@@ -12,7 +12,7 @@ module.exports = {
     if (!link) {
       return next(new AppError("Link with the given id not found", 404));
     }
-    res.status(200).send(link);
+    return res.status(200).send(link);
   }),
   getLinks: catchAsync(async (req, res, next) => {
     const links = await Link.find({}, { __v: 0 }).sort("title");

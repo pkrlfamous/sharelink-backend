@@ -18,7 +18,9 @@ const handleValidationErrorDB = err =>{
     const message = `Invalid input data. ${errors.join('. ')}`;
     return AppError(message);
 }
+
 const sendErrorDev = (err, res) =>{
+    console.log('sendErrorDev');
     res.status(err.statusCode).json({
         status: err.status,
         error: err,
@@ -49,6 +51,7 @@ const sendErrorProd = (err, res) => {
 
 module.exports = (err, req, res, next) => {
     // console.log(err.stack);
+    console.log('middleware function');
     err.statusCode = err.statusCode || 500;
     err.status = err.status || 'error';
 

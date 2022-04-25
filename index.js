@@ -1,7 +1,7 @@
 const express = require('express');
 const res = require('express/lib/response');
 const app = express();
-
+require('dotenv').config();
 
 process.on('uncaughtException', err => {
     console.log(err.name, err.message);
@@ -37,3 +37,4 @@ process.on('unhandledRejection', err => {
         process.exit(1);
     });
 });
+

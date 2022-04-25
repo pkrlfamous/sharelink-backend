@@ -6,6 +6,7 @@ class AppError extends Error{
         // all the error created with this class are always operationalError
         this.isOperational = true;
         Error.captureStackTrace(this, this.constructor); // first this specifies the current object.
+        console.log('app error');
     }
 }
 
