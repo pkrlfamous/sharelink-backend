@@ -22,5 +22,5 @@ module.exports = {
         if(!validPassword) return res.status(400).send('Invalid password');
         console.log('successfully logged in')
         return res.status(200).send()
-    }),
+    }),       
 }
