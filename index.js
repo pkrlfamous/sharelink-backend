@@ -1,40 +1,42 @@
-const express = require('express');
-const res = require('express/lib/response');
+const express = require("express");
+const res = require("express/lib/response");
 const app = express();
-require('dotenv').config();
+require("dotenv").config();
+const router = express.Router();
 
-process.on('uncaughtException', err => {
-    console.log(err.name, err.message);
-    console.log('UNHANDLED REJECTION');
-        process.exit(1);
+process.on("uncaughtException", (err) => {
+  console.log(err.name, err.message);
+  console.log("UNHANDLED REJECTION");
+  process.exit(1);
 });
 
-const AppError = require('./src/utils/appError');
-const globalErrorHandler = require('./src/controllers/errorController');
+const AppError = require("./src/utils/appError");
+const globalErrorHandler = require("./src/controllers/errorController");
 app.use(express.json());
 
-require('./src/config/dbConfig')();
+router.all("/", (req, res) => {
+  res.send("hi from Main Router");
+});
 
-app.use('/api/v1', require('./src/routes'));
+require("./src/config/dbConfig")();
 
+app.use("/api/v1", require("./src/routes"));
 
-app.all('*', (req, res, next)=>{
-    next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
+app.all("*", (req, res, next) => {
+  next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
 });
 
 app.use(globalErrorHandler);
 
-
 const port = process.env.PORT || 3000;
 const server = app.listen(port, () => {
-    console.log(`listening to ${port}`);
-})
-
-process.on('unhandledRejection', err => {
-    console.log(err.name, err.message);
-    console.log('UNHANDLED REJECTION');
-    server.close(() => {
-        process.exit(1);
-    });
+  console.log(`listening to ${port}`);
 });
 
+process.on("unhandledRejection", (err) => {
+  console.log(err.name, err.message);
+  console.log("UNHANDLED REJECTION");
+  server.close(() => {
+    process.exit(1);
+  });
+});
